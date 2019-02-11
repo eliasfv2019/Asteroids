@@ -17,14 +17,14 @@ public class Rocket extends SmoothMover
 
     private GreenfootImage rocket = new GreenfootImage("rocket.png");    
     private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
-    private boolean isDown;
+
     /**
      * Initialise this rocket.
      */
     public Rocket()
     {
         reloadDelayCount = 5;
-        isDown = false;
+        addToVelocity(new Vector(Greenfoot.getRandomNumber(360), 0.7));
     }
 
     /**
@@ -35,9 +35,9 @@ public class Rocket extends SmoothMover
     {
         checkKeys();
         reloadDelayCount++;
-        blowUp();
         protonWave();
-        move(1);
+        move();
+        blowUp();
     }
 
     /**
@@ -49,12 +49,19 @@ public class Rocket extends SmoothMover
         {
             fire();
         }
-        if(Greenfoot.isKeyDown("a")){
+        if(Greenfoot.isKeyDown("left")){
             turn(-2);   
         }
-        if(Greenfoot.isKeyDown("d")){
+        if(Greenfoot.isKeyDown("right")){
             turn(2);   
         }
+        if(Greenfoot.isKeyDown("up")){
+            setImage("rocketWithThrust.png");
+            addToVelocity(new Vector(getRotation(), 0.2));
+        }else{
+            setImage("rocket.png");
+        }
+
     }
 
     /**
@@ -73,8 +80,10 @@ public class Rocket extends SmoothMover
 
     private void blowUp(){
         if(isTouching(Asteroid.class)){
-            getWorld().addObject(new Explosion(),getX(),getY());
-            getWorld().removeObject(this);
+            Space s = (Space)getWorld();
+            s.addObject(new Explosion(),getX(),getY());
+            s.gameOver();
+            s.removeObject(this);
         }
     }
 

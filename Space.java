@@ -10,6 +10,13 @@ public class Space extends World
 {
     private Counter scoreCounter;
     private int startAsteroids = 3;
+    public void stars(){
+        
+        GreenfootImage background = getBackground();
+        background.setColor(Color.WHITE);
+        background.fill();
+        
+    }
 
     /**
      * Create the space and all objects within it.
@@ -22,7 +29,7 @@ public class Space extends World
         background.fill();
         
         Rocket rocket = new Rocket();
-        addObject(rocket, getWidth()/2 + 100, getHeight()/2);
+        addObject(rocket,getWidth()/2 + 100, getHeight()/2);
         
         addAsteroids(startAsteroids);
         
