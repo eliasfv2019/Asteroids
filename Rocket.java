@@ -15,7 +15,7 @@ public class Rocket extends SmoothMover
 
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
 
-    private GreenfootImage rocket = new GreenfootImage("rocket.png");    
+    private GreenfootImage rocket = new GreenfootImage("rocket.png");
     private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
 
     /**

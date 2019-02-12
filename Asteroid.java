@@ -1,4 +1,5 @@
 import greenfoot.*;
+import java.util.List;
 
 /**
  * A rock in space.
@@ -14,7 +15,6 @@ public class Asteroid extends SmoothMover
     /** When the stability reaches 0 the asteroid will explode */
     private int stability;
 
-
     /**
      * Create an asteroid with default size and random direction of movement.
      */
@@ -22,7 +22,18 @@ public class Asteroid extends SmoothMover
     {
         this(50);
     }
-    
+
+    private void checkCollision(){
+        getObjectsInRange(getImage().getWidth()/2, Rocket.class);
+        Rocket r = (Rocket)getOneIntersectingObject(Rocket.class);
+        if(r != null){
+            Space s = (Space)getWorld();
+            s.addObject(new Explosion(),getX(),getY());
+            s.gameOver();
+            s.removeObject(this);
+        }   
+    }
+
     /**
      * Create an asteroid with a given size and random direction of movement.
      */
@@ -31,7 +42,7 @@ public class Asteroid extends SmoothMover
         super(new Vector(Greenfoot.getRandomNumber(360), 2));
         setSize(size);
     }
-    
+
     /**
      * Create an asteroid with a given size and direction of movement.
      */
@@ -40,7 +51,7 @@ public class Asteroid extends SmoothMover
         super(velocity);
         setSize(size);
     }
-    
+
     public void act()
     {         
         move();
@@ -66,7 +77,7 @@ public class Asteroid extends SmoothMover
     {
         return stability;
     }
-    
+
     /**
      * Hit this asteroid dealing the given amount of damage.
      */
@@ -78,7 +89,7 @@ public class Asteroid extends SmoothMover
             breakUp();
         }
     }
-    
+
     /**
      * Break up this asteroid. If we are still big enough, this will create two
      * smaller asteroids. If we are small already, just disappear.
@@ -86,7 +97,7 @@ public class Asteroid extends SmoothMover
     private void breakUp() 
     {
         Greenfoot.playSound("Explosion.wav");
-        
+
         if (size <= 16) {
             getWorld().removeObject(this);
         }
@@ -101,7 +112,7 @@ public class Asteroid extends SmoothMover
             getWorld().addObject(a2, getX(), getY());        
             a1.move();
             a2.move();
-        
+
             getWorld().removeObject(this);
         }
     }

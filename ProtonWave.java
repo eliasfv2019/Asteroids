@@ -28,10 +28,10 @@ public class ProtonWave extends Actor
     /**
      * Create a new proton wave.
      */
-    
+
     public ProtonWave() 
     {
-        
+
         initializeImages();
     }
 
@@ -55,12 +55,18 @@ public class ProtonWave extends Actor
         }
     }
 
+    public void checkTouching(){
+        if(isTouching(Asteroid.class)){
+            removeTouching(Asteroid.class);
+        }
+    }
 
     /**
      * Act for the proton wave is: grow and check whether we hit anything.
      */
     public void act()
     { 
+        checkTouching();
         setImage(images[imageNo]);
 
         imageNo += increment;
@@ -74,6 +80,7 @@ public class ProtonWave extends Actor
         {
             getWorld().removeObject(this);
         }
+        
     }
 
 }
