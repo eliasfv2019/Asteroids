@@ -37,7 +37,7 @@ public class Explosion extends Actor
     /** 
      * Create the images for explosion.
      */
-    public synchronized static void initializeImages() 
+    public static void initializeImages() 
     {
         if(images == null) 
         {

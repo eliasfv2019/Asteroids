@@ -1,5 +1,4 @@
 import greenfoot.*;
-import java.util.List;
 
 /**
  * A rock in space.
@@ -14,24 +13,12 @@ public class Asteroid extends SmoothMover
 
     /** When the stability reaches 0 the asteroid will explode */
     private int stability;
-
     /**
      * Create an asteroid with default size and random direction of movement.
      */
     public Asteroid()
     {
         this(50);
-    }
-
-    private void checkCollision(){
-        getObjectsInRange(getImage().getWidth()/2, Rocket.class);
-        Rocket r = (Rocket)getOneIntersectingObject(Rocket.class);
-        if(r != null){
-            Space s = (Space)getWorld();
-            s.addObject(new Explosion(),getX(),getY());
-            s.gameOver();
-            s.removeObject(this);
-        }   
     }
 
     /**
@@ -55,6 +42,13 @@ public class Asteroid extends SmoothMover
     public void act()
     {         
         move();
+
+    }
+
+    private void touchingAsteroid(){
+        if(isTouching(ProtonWave.class)){  
+            removeTouching(Asteroid.class);   
+        }   
     }
 
     /**
@@ -84,6 +78,7 @@ public class Asteroid extends SmoothMover
     public void hit(int damage) 
     {
         stability = stability - damage;
+        ;
         if (stability <= 0) 
         {
             breakUp();

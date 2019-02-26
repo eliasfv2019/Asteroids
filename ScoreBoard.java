@@ -12,13 +12,15 @@ public class ScoreBoard extends Actor
     public static final float FONT_SIZE = 48.0f;
     public static final int WIDTH = 400;
     public static final int HEIGHT = 300;
-    
+    public static int score;
+    public String saying;
     /**
      * Create a score board with dummy result for testing.
      */
     public ScoreBoard()
     {
         this(100);
+
     }
 
     /**
@@ -27,6 +29,13 @@ public class ScoreBoard extends Actor
     public ScoreBoard(int score)
     {
         makeImage("Game Over", "Score: ", score);
+    }
+
+    public void act(){
+        if(score != Counter.value){
+            score = Counter.value;
+            makeImage(saying, "Score: ",score);
+        }
     }
 
     /**
