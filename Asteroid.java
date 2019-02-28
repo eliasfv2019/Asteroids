@@ -51,6 +51,13 @@ public class Asteroid extends SmoothMover
         }   
     }
 
+    private void touchingBullet(){
+        if(isTouching(Bullet.class)){
+            Counter c = getWorld().getObjects(Counter.class).get(0);
+            c.getValue();
+        }
+    }
+
     /**
      * Set the size of this asteroid. Note that stability is directly
      * related to size. Smaller asteroids are less stable.
