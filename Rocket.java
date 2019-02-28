@@ -93,15 +93,22 @@ public class Rocket extends SmoothMover
         }
     }
 
+    private void gameOver(){
+        getWorld().addObject(new ScoreBoard(), 300,250);
+        //Greenfoot.playSound("Ree.mp3");
+    }
+
     /**
      * If the rocket is touching the Asteroid, blow up.
      */
     private void blowUp(){
         if(isTouching(Asteroid.class)){
+            gameOver();
             Space s = (Space)getWorld();
             s.addObject(new Explosion(),getX(),getY());
             s.gameOver();
             s.removeObject(this);
+            
         }
     }
 
