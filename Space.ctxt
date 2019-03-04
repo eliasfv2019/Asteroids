@@ -1,17 +1,11 @@
 #BlueJ class context
-comment0.target=Space
-comment0.text=\n\ Space.\ Something\ for\ rockets\ to\ fly\ in.\n\ \n\ @author\ Michael\ K\u00F6lling\n\ @version\ 1.0\n
-comment1.params=
-comment1.target=void\ Oval()
+comment0.params=
+comment0.target=Space()
+comment0.text=\n\ Create\ the\ space\ and\ all\ objects\ within\ it.\n
+comment1.params=count
+comment1.target=void\ addAsteroids(int)
+comment1.text=\n\ Add\ a\ given\ number\ of\ asteroids\ to\ our\ world.\ Asteroids\ are\ only\ added\ into\n\ the\ left\ half\ of\ the\ world.\n
 comment2.params=
-comment2.target=void\ stars()
-comment3.params=
-comment3.target=Space()
-comment3.text=\n\ Create\ the\ space\ and\ all\ objects\ within\ it.\n
-comment4.params=count
-comment4.target=void\ addAsteroids(int)
-comment4.text=\n\ Add\ a\ given\ number\ of\ asteroids\ to\ our\ world.\ Asteroids\ are\ only\ added\ into\n\ the\ left\ half\ of\ the\ world.\n
-comment5.params=
-comment5.target=void\ gameOver()
-comment5.text=\n\ This\ method\ is\ called\ when\ the\ game\ is\ over\ to\ display\ the\ final\ score.\n
-numComments=6
+comment2.target=void\ gameOver()
+comment2.text=\n\ This\ method\ is\ called\ when\ the\ game\ is\ over\ to\ display\ the\ final\ score.\n
+numComments=3

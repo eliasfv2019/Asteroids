@@ -42,7 +42,7 @@ public abstract class SmoothMover extends Actor
         exactX = exactX + velocity.getX();
         exactY = exactY + velocity.getY();
         if (exactX >= getWorld().getWidth()) {
-            exactX = 1;
+            exactX = 0;
         }
         if (exactX < 0) {
             exactX = getWorld().getWidth() - 1;
