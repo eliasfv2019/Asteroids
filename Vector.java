@@ -13,7 +13,7 @@ public final class Vector
     double dy;
     int direction;
     double length;
-    
+
     /**
      * Create a new, neutral vector.
      */
@@ -50,7 +50,7 @@ public final class Vector
         this.direction = direction;
         updateCartesian();
     }
-   
+
     /**
      * Add another vector to this vector.
      */
@@ -60,7 +60,7 @@ public final class Vector
         dy += other.dy;
         updatePolar();
     }
-    
+
     /**
      * Set the length of this vector, leaving the direction intact.
      */
@@ -69,7 +69,7 @@ public final class Vector
         this.length = length;
         updateCartesian();
     }
-    
+
     /**
      * Scale this vector up (factor greater than 1) or down (factor less than 1). 
      * The direction remains unchanged.
@@ -79,7 +79,7 @@ public final class Vector
         length = length * factor;
         updateCartesian();
     }
-    
+
     /**
      * Set this vector to the neutral vector (length 0).
      */
@@ -90,7 +90,7 @@ public final class Vector
         length = 0.0;
         direction = 0;
     }
-    
+
     /**
      * Revert to horizontal component of this movement vector.
      */
@@ -99,7 +99,7 @@ public final class Vector
         dx = -dx;
         updatePolar();
     }
-    
+
     /**
      * Revert to vertical component of this movement vector.
      */
@@ -108,7 +108,7 @@ public final class Vector
         dy = -dy;
         updatePolar();
     }
-    
+
     /**
      * Return the x offset of this vector (start to end point).
      */
@@ -116,7 +116,7 @@ public final class Vector
     {
         return dx;
     }
-     
+
     /**
      * Return the y offset of this vector (start to end point).
      */
@@ -124,7 +124,7 @@ public final class Vector
     {
         return  dy;
     }
-    
+
     /**
      * Return the direction of this vector (in degrees). 0 is EAST.
      */
@@ -132,7 +132,7 @@ public final class Vector
     {
         return direction;
     }
-    
+
     /**
      * Return the length of this vector.
      */
@@ -149,7 +149,7 @@ public final class Vector
         this.direction = (int) Math.toDegrees(Math.atan2(dy, dx));
         this.length = Math.sqrt(dx*dx+dy*dy);
     }   
-    
+
     /**
      * Update dx and dy from the current direction and length.
      */
@@ -158,7 +158,7 @@ public final class Vector
         dx = length * Math.cos(Math.toRadians(direction));
         dy = length * Math.sin(Math.toRadians(direction));   
     }
-    
+
     /**
      * Return a copy of this vector.
      */

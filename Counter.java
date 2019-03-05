@@ -1,5 +1,5 @@
 import greenfoot.*;
-import java.awt.Color;
+
 
 /**
  * A Counter class that allows you to display a numerical value on screen.

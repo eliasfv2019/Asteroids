@@ -12,9 +12,9 @@ import greenfoot.*;
 public class Rocket extends SmoothMover
 {
     private static final int gunReloadTime = 5;         // The minimum delay between firing the gun.
-
+    private static final int protonReloadTime = 50;     // The minimum delay between firing the proton wave.           
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
-    
+    private int protonDelayCount;               // How long ago the proton wave was fired.
     private GreenfootImage rocket = new GreenfootImage("rocket.png");    
     private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
 
@@ -24,6 +24,8 @@ public class Rocket extends SmoothMover
     public Rocket()
     {
         reloadDelayCount = 5;
+        protonDelayCount = 30;
+        addToVelocity(new Vector(Greenfoot.getRandomNumber(360), 0.7));
     }
 
     /**
@@ -34,19 +36,37 @@ public class Rocket extends SmoothMover
     {
         checkKeys();
         reloadDelayCount++;
+        protonDelayCount++;
+        move();
+        blowUp();
     }
-    
+
     /**
      * Check whether there are any key pressed and react to them.
      */
     private void checkKeys() 
     {
+        if(Greenfoot.isKeyDown("z")){
+            protonWave();   
+        }
         if (Greenfoot.isKeyDown("space")) 
         {
             fire();
         }
+        if(Greenfoot.isKeyDown("left")){
+            turn(-2);   
+        }
+        if(Greenfoot.isKeyDown("right")){
+            turn(2);   
+        }
+        if(Greenfoot.isKeyDown("up")){
+            setImage("rocketWithThrust.png");
+            addToVelocity(new Vector(getRotation(), 0.2));
+        }else{
+            setImage("rocket.png");
+        }
     }
-    
+
     /**
      * Fire a bullet if the gun is ready.
      */
@@ -60,5 +80,26 @@ public class Rocket extends SmoothMover
             reloadDelayCount = 0;
         }
     }
-    
+
+    private void protonWave(){
+        if( protonDelayCount >= protonReloadTime){
+            World w = getWorld();
+            ProtonWave wave = new ProtonWave();
+            w.addObject(wave, getX(),getY());
+            protonDelayCount = 0;
+        }
+    }
+
+    /**
+     * If the rocket is touching the Asteroid, blow up.
+     */
+    private void blowUp(){
+        if(isTouching(Asteroid.class)){
+            Space s = (Space)getWorld();
+            s.addObject(new Explosion(),getX(),getY());
+            s.gameOver();
+            s.removeObject(this);
+        }
+    }
+
 }

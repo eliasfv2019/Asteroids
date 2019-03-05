@@ -1,6 +1,6 @@
 import greenfoot.*;
-import java.awt.Color;
-import java.awt.Font;
+
+
 
 /**
  * The ScoreBoard is used to display results on the screen. It can display some
