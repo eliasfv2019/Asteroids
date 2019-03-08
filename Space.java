@@ -10,6 +10,7 @@ public class Space extends World
 {
     private Counter scoreCounter;
     private int startAsteroids = 3;
+    private int startVortex = 2;
     public void stars(){
         for(int i = 0; i<100;i++){  
             int f,z,p;
@@ -38,8 +39,9 @@ public class Space extends World
 
         Rocket rocket = new Rocket();
         addObject(rocket, getWidth()/2 + 100, getHeight()/2);
-        
+
         addAsteroids(startAsteroids);
+        addVortex(startVortex);
 
         scoreCounter = new Counter("Score: ");
         addObject(scoreCounter, 60, 480);
@@ -60,6 +62,20 @@ public class Space extends World
             int x = Greenfoot.getRandomNumber(getWidth()/2);
             int y = Greenfoot.getRandomNumber(getHeight()/2);
             addObject(new Asteroid(), x, y);
+        }
+    }
+
+    private void addVortex(int count){
+        for(int i = 0; i < count; i++){
+            int g = 0;
+            if(g < getWidth()/2){
+                addObject(new Vortex(),getWidth()/4,Greenfoot.getRandomNumber(getHeight()/2));
+                g= g + 10;
+            } else {
+                addObject(new Vortex(),600,Greenfoot.getRandomNumber(getHeight()/2));
+
+            }
+
         }
     }
 

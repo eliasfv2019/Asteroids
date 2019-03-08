@@ -13,4 +13,6 @@ comment3.text=\n\ The\ bullet\ will\ damage\ asteroids\ if\ it\ hits\ them.\n
 comment4.params=
 comment4.target=void\ checkAsteroidHit()
 comment4.text=\n\ Check\ whether\ we\ have\ hit\ an\ asteroid.\n
-numComments=5
+comment5.params=
+comment5.target=void\ touchingBlackHole()
+numComments=6

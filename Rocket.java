@@ -39,6 +39,7 @@ public class Rocket extends SmoothMover
         protonDelayCount++;
         move();
         blowUp();
+        touchVortex();
     }
 
     /**
@@ -90,6 +91,11 @@ public class Rocket extends SmoothMover
         }
     }
 
+    private void touchVortex(){
+        if(isTouching(Vortex.class)){
+            setLocation(Greenfoot.getRandomNumber(400),Greenfoot.getRandomNumber(400));
+        }
+    }
     /**
      * If the rocket is touching the Asteroid, blow up.
      */
