@@ -10,7 +10,8 @@ public class Space extends World
 {
     private Counter scoreCounter;
     private int startAsteroids = 3;
-    private int startVortex = 2;
+    private int startBlackHole = 1;
+    private int startVortex = 1;
     public void stars(){
         for(int i = 0; i<100;i++){  
             int f,z,p;
@@ -40,6 +41,8 @@ public class Space extends World
         Rocket rocket = new Rocket();
         addObject(rocket, getWidth()/2 + 100, getHeight()/2);
 
+        addBlackHole(startBlackHole);
+
         addAsteroids(startAsteroids);
         addVortex(startVortex);
 
@@ -65,18 +68,16 @@ public class Space extends World
         }
     }
 
+    private void addBlackHole(int count){
+        for(int i = 0; i < count; i++){
+            addObject(new BlackHole(),Greenfoot.getRandomNumber(getWidth()),Greenfoot.getRandomNumber(getHeight()));
+        }
+    }
+
     private void addVortex(int count){
         for(int i = 0; i < count; i++){
-            int g = 0;
-            if(g < getWidth()/2){
-                addObject(new Vortex(),getWidth()/4,Greenfoot.getRandomNumber(getHeight()/2));
-                g= g + 10;
-            } else {
-                addObject(new Vortex(),600,Greenfoot.getRandomNumber(getHeight()/2));
-
-            }
-
-        }
+            addObject(new Vortex(),Greenfoot.getRandomNumber(getWidth()),Greenfoot.getRandomNumber(getHeight()));
+        } 
     }
 
     /**
@@ -84,6 +85,9 @@ public class Space extends World
      */
     public void gameOver() 
     {
+        ScoreBoard s = new ScoreBoard();
+        addObject(s, getWidth()/2,getHeight()/2);
+        Greenfoot.stop();
         // TODO: show the score board here. Currently missing.
     }
 

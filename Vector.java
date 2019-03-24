@@ -13,7 +13,7 @@ public final class Vector
     double dy;
     int direction;
     double length;
-
+    double length2;
     /**
      * Create a new, neutral vector.
      */
@@ -27,6 +27,7 @@ public final class Vector
      */
     public Vector(int direction, double length)
     {
+        this.length2 = length2;
         this.length = length;
         this.direction = direction;
         updateCartesian();
@@ -67,6 +68,7 @@ public final class Vector
     public void setLength(double length) 
     {
         this.length = length;
+        this.length2 = length + 10;
         updateCartesian();
     }
 
@@ -88,6 +90,7 @@ public final class Vector
         dx = 0.0;
         dy = 0.0;
         length = 0.0;
+        length2 = 0.0;
         direction = 0;
     }
 
@@ -141,6 +144,10 @@ public final class Vector
         return length;
     }
 
+    public double getLength2(){
+        return length2;   
+    }
+
     /**
      * Update the direction and length from the current dx, dy.
      */
@@ -148,6 +155,7 @@ public final class Vector
     {
         this.direction = (int) Math.toDegrees(Math.atan2(dy, dx));
         this.length = Math.sqrt(dx*dx+dy*dy);
+
     }   
 
     /**

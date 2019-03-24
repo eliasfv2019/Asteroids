@@ -12,9 +12,11 @@ import greenfoot.*;
 public class Rocket extends SmoothMover
 {
     private static final int gunReloadTime = 5;         // The minimum delay between firing the gun.
-    private static final int protonReloadTime = 50;     // The minimum delay between firing the proton wave.           
+    private static final int protonReloadTime = 70;     // The minimum delay between firing the proton wave.           
+    private static final int missileReloadTime = 70;
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
     private int protonDelayCount;               // How long ago the proton wave was fired.
+    private int missileDelayCount;
     private GreenfootImage rocket = new GreenfootImage("rocket.png");    
     private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
 
@@ -24,6 +26,7 @@ public class Rocket extends SmoothMover
     public Rocket()
     {
         reloadDelayCount = 5;
+        missileDelayCount = 30;
         protonDelayCount = 30;
         addToVelocity(new Vector(Greenfoot.getRandomNumber(360), 0.7));
     }
@@ -34,12 +37,14 @@ public class Rocket extends SmoothMover
      */
     public void act()
     {
+        touchVortex();
         checkKeys();
         reloadDelayCount++;
         protonDelayCount++;
+        missileDelayCount++;
         move();
         blowUp();
-        touchVortex();
+
     }
 
     /**
@@ -66,6 +71,9 @@ public class Rocket extends SmoothMover
         }else{
             setImage("rocket.png");
         }
+        if(Greenfoot.isKeyDown("q")){
+            Missile();
+        }
     }
 
     /**
@@ -82,20 +90,44 @@ public class Rocket extends SmoothMover
         }
     }
 
+    private void Missile(){
+        if(missileDelayCount >= missileReloadTime){
+            Missile missile = new Missile (getVelocity(), getRotation());
+            getWorld().addObject(missile,getX(),getY());
+            missile.move();
+            missileDelayCount = 0;
+        }
+    }
+
     private void protonWave(){
-        if( protonDelayCount >= protonReloadTime){
+        while( protonDelayCount >= protonReloadTime){
             World w = getWorld();
+            w.showText("Ready",40,20);
             ProtonWave wave = new ProtonWave();
             w.addObject(wave, getX(),getY());
             protonDelayCount = 0;
+
         }
+        World w = getWorld();
+        w.showText("Not Ready",70,20);   
     }
 
     private void touchVortex(){
         if(isTouching(Vortex.class)){
-            setLocation(Greenfoot.getRandomNumber(400),Greenfoot.getRandomNumber(400));
+            removeTouching(Vortex.class);
+            setLocation(Greenfoot.getRandomNumber(getWorld().getHeight()),Greenfoot.getRandomNumber(getWorld().getHeight()));
+            getWorld().addObject(new Vortex2(),getX(),getY());
+        }
+        if(isTouching(Vortex2.class)){
+            removeTouching(Vortex2.class);
+            getWorld().addObject(new Vortex(), Greenfoot.getRandomNumber(getWorld().getHeight()),Greenfoot.getRandomNumber(getWorld().getHeight()));  
         }
     }
+
+    private void vortexLocation(){
+
+    }
+
     /**
      * If the rocket is touching the Asteroid, blow up.
      */
@@ -105,7 +137,15 @@ public class Rocket extends SmoothMover
             s.addObject(new Explosion(),getX(),getY());
             s.gameOver();
             s.removeObject(this);
+            s.gameOver();
         }
     }
-
+    private void touchBlackHole(){
+     if(isTouching(BlackHole.class)){
+         Space s = (Space)getWorld();
+         s.removeObject(this);
+         s.gameOver();
+         
+        }
+    }
 }

@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Vortex2
+comment0.text=\n\ Write\ a\ description\ of\ class\ Vortex\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=void\ act()
+comment1.text=\n\ Act\ -\ do\ whatever\ the\ Vortex\ wants\ to\ do.\ This\ method\ is\ called\ whenever\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n
+comment2.params=
+comment2.target=Vortex2()
+comment3.params=
+comment3.target=void\ spin()
+comment4.params=size
+comment4.target=Vortex2(int)
+comment5.params=size
+comment5.target=void\ setSize(int)
+comment6.params=
+comment6.target=void\ spawn()
+numComments=7

@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.target=Missile
+comment0.text=\n\ A\ Missile\ that\ can\ hit\ asteroids.\n\ \n\ @author\ Poul\ Henriksen\n\ @author\ Michael\ K\u00F6lling\n
+comment1.params=
+comment1.target=Missile()
+comment1.text=\n\ Default\ constructor\ for\ testing.\n
+comment2.params=size
+comment2.target=Missile(int)
+comment3.params=speed\ rotation
+comment3.target=Missile(Vector,\ int)
+comment3.text=\n\ Create\ a\ Missile\ with\ given\ speed\ and\ direction\ of\ movement.\n
+comment4.params=
+comment4.target=void\ act()
+comment4.text=\n\ The\ Missile\ will\ damage\ asteroids\ if\ it\ hits\ them.\n
+comment5.params=
+comment5.target=void\ followAsteroid()
+comment5.text=\n\ The\ missile\ will\ follow\ the\ asteroids\ in\ range.\n
+comment6.params=
+comment6.target=void\ checkAsteroidHit()
+comment6.text=\n\ Check\ whether\ we\ have\ hit\ an\ asteroid.\n
+comment7.params=size
+comment7.target=void\ setSize(int)
+numComments=8

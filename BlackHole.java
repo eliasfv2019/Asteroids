@@ -27,6 +27,9 @@ public class BlackHole extends Actor
         this(80);
     }
 
+    /**
+     * Spin around.
+     */
     private void spin(){
         turn(2);
     }
@@ -35,18 +38,29 @@ public class BlackHole extends Actor
         setSize(size);
     }
 
+    /**
+     * Check if it is touching a Rocket, if yes, then delete that rocket and end the game.
+     */
     private void touchingRocket(){
         if(isTouching(Rocket.class)){
             removeTouching(Rocket.class);
+            Space s = (Space)getWorld();
+            s.gameOver();
         }
     }
 
+    /**
+     * Check if it is touching a Rocket, if yes, then delete that asteroid.
+     */
     private void touchingAsteroid(){
         if(isTouching(Asteroid.class)){
             removeTouching(Asteroid.class);
         }
     }
 
+    /**
+     * Give the Blackhole a set size.
+     */
     public void setSize(int size) 
     {
         this.size = size;
